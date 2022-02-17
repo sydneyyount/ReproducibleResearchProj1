@@ -36,6 +36,8 @@ names(aggData)[2]<- "steps"
 ```{r,aggData}
 hist(aggData$steps,xlab='Total Steps',main = 'Total Number of Steps Per Day')
 ```
+![image](https://user-images.githubusercontent.com/92326165/154482583-942d4d3f-d281-4573-b94c-019ab4b11f8a.png)
+
 
 ## Mean and Median Number of Steps Each Day
 Mean: 
@@ -46,6 +48,8 @@ Median:
 ```{r}
 median(aggData$steps)
 ```
+![image](https://user-images.githubusercontent.com/92326165/154482648-ac89090e-1615-489d-a8b5-fc016a6dd921.png)
+
 ## Time Series Plot of Average Number of Steps Taken
 Subsetting data by interval
 ```{r}
@@ -57,6 +61,8 @@ Plotting of intervals and average number of steps taken
 ```{r}
 plot(aggInt$interval,aggInt$steps,type='l',main='Average Daily Activity Pattern',xlab = 'Interval',ylab='Average # of Steps')
 ```
+![image](https://user-images.githubusercontent.com/92326165/154482710-a3058835-710e-4e2c-ba47-d858d9e14d6f.png)
+
 Determining 5 minute interval that contains maximum number of steps:
 ```{r}
 avg = max(aggInt$steps)
@@ -67,6 +73,8 @@ Determining number of NA's in data set
 ```{r}
 sum(is.na(activity$steps))
 ```
+![image](https://user-images.githubusercontent.com/92326165/154482786-ac39a02b-16a5-4e05-8aa1-873341d302b9.png)
+
 Filling in missing data with mean value of data set
 ```{r}
 newAct <- activity
@@ -79,6 +87,8 @@ names(newAggData)[1] <- "date"
 names(newAggData)[2]<- "steps"
 hist(newAggData$steps,xlab='Total Steps',main = 'Total Number of Steps Per Day')
 ```
+![image](https://user-images.githubusercontent.com/92326165/154482844-4b9af548-0103-459c-8149-53044cbbcca0.png)
+
 Determining new mean and median of data set
 Mean:
 ```{r}
@@ -88,6 +98,8 @@ Median:
 ```{r}
 median(newAggData$steps)
 ```
+![image](https://user-images.githubusercontent.com/92326165/154482885-2b28e1c6-a8ce-477d-bcf4-096b57e33b7c.png)
+
 Inputting the new missing values had no affect on the mean, but changed the median value to match that of the mean. 
 
 ## Patterns between Weekends Versus Weekdays
@@ -100,3 +112,5 @@ Making Panel Plot to show the average number of steps acrosss all weekend days o
 ```{r}
 newAggData2 <- aggregate(newAct$steps, newAct[c('interval','type')],FUN=mean)
 xyplot(newAggData2$x~ newAggData2$interval|newAggData2$type,type = 'l', layout=c(1,2),main = 'Avg Steps Per Interval by Day Type',ylab = 'Avg # of Steps',xlab = 'Interval')
+```
+![image](https://user-images.githubusercontent.com/92326165/154482949-9fed7187-c19d-4cf8-8b4d-2a89c3d03c42.png)
